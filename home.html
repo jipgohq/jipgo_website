@@ -55,31 +55,34 @@
       background: url('homebackground.jpeg') center/cover no-repeat;
       display: flex;
       position: relative;
-      padding: 260px 5% 40px;
+      padding: 120px 5% 40px; /* changed from 260px to 120px */
       color: #fff;
+      align-items: flex-start;
     }
     .hero-content {
       max-width: 800px;
       flex: 1;
+      margin-top: 60px; /* 기존 0 → 60px, 텍스트와 버튼을 좀 더 아래로 */
     }
     .hero h1 {
-      font-size: 4rem;
+      font-size: 3rem; /* 기존 4rem → 3rem */
       font-weight: 700;
       line-height: 1.2;
-      margin-bottom: 40px;
+      margin-bottom: 28px; /* 기존 40px → 28px */
     }
     .hero-desc {
-      font-size: 1.15rem;
-      margin-bottom: 24px;
+      font-size: 1.08rem; /* 기존 1.15rem → 1.08rem */
+      margin-bottom: 18px; /* 기존 24px → 18px */
       color: #e0ebf8;
       line-height: 1.5;
     }
     .download-buttons {
       display: flex;
-      gap: 16px;
+      gap: 18px; /* 기존 16px → 18px */
+      margin-top: 10px;
     }
     .download-buttons img {
-      height: 48px;
+      height: 44px; /* 기존 48px → 44px */
       cursor: pointer;
       filter: drop-shadow(0 2px 8px rgba(0,0,0,0.13));
       transition: filter .18s;
@@ -164,27 +167,20 @@
 
     /* --- Responsive Adjustments --- */
     @media (max-width: 900px) {
-      .hero h1 { font-size: 2.5rem; }
-      .section-text h1, .section-text h2 { font-size: 1.5rem; }
-      .section-inner { flex-direction: column; gap: 24px; }
-      .hero { padding-top: 180px; }
+      .hero { padding: 70px 5% 20px; }
+      .hero-content { margin-top: 40px; }
+      .hero h1 { font-size: 2.2rem; }
     }
     @media (max-width: 700px) {
       .header { padding: 10px 14px; }
       .logo { width: 66px; }
       .main-icons img { width: 26px; height: 26px; }
-      .hero { padding: 120px 5% 15px; flex-direction: column; }
-      .hero-content { max-width: 100%; }
-      .hero h1 { font-size: 1.4rem; margin-bottom: 20px; }
-      .hero-desc { font-size: 0.98rem; }
+      .hero { padding: 40px 4% 10px; flex-direction: column; }
+      .hero-content { max-width: 100%; margin-top: 24px; }
+      .hero h1 { font-size: 1.4rem; margin-bottom: 16px; }
+      .hero-desc { font-size: 0.98rem; margin-bottom: 12px; }
       .download-buttons img { height: 36px; }
-      .hero-about-img {
-        position: static;
-        width: 85vw;
-        margin: 0 auto 20px auto;
-        display: block;
-        top: unset; right: unset;
-      }
+      .download-buttons { gap: 10px; }
       .section-inner { gap: 18px; }
       .section-img img { min-width: 0; }
       .sns-row { gap: 18px; }
@@ -197,8 +193,9 @@
     @media (max-width: 480px) {
       .header { flex-direction: column; align-items: flex-start; gap: 4px; }
       .logo { width: 56px; }
-      .hero { padding: 70px 4% 10px; }
-      .download-buttons { flex-direction: column; gap: 10px; }
+      .hero { padding: 30px 4% 10px; }
+      .hero-content { margin-top: 12px; }
+      .download-buttons { flex-direction: column; gap: 8px; }
       .footer-menu { flex-wrap: wrap; gap: 8px; }
       .white-section { padding: 22px 2%; }
     }
@@ -213,7 +210,7 @@
     </div>
   </header>
   <section class="hero">
-    <img src="about.png" alt="최고 시공 기사/디자이너" class="hero-about-img" />
+    <img src="about.png" alt="최고 시공 기사/디자이너" class="hero-about-img" style="cursor:pointer;" onclick="location.href='about.html'" />
     <div class="hero-content" data-aos="fade-up">
       <h1>
         집을 고치고 싶다면,<br>
@@ -249,7 +246,7 @@
       <div class="section-text">
         <h1>이제 인테리어도 SMART SAVING</h1>
         <p>
-          비싼 리모델링, 이제 그만 고민하세요<br>
+          비싼 리모델링, 이제 그만 고민하세요<br> 
           집고는 다릅니다<br>
           마진 거품은 OUT, 중개 수수료는 ZERO, 불필요한 매칭 프로세스는 SKIP!<br>
           오직 당신의 공간에 집중하세요

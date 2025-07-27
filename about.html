@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>집고에 시공 기사, 인테리어 코디네이터, 자재상으로 등록하고 싶으신가요?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Inter', 'Noto Sans KR', sans-serif;
+      background: #000000;
+    }
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 100px;
+      z-index: 200;
+
+      box-sizing: border-box;
+    }
+    .logo { width: 92px; }
+    .main-icons {
+      display: flex;
+      gap: 18px;
+    }
+    .main-icons img {
+      width: 32px; height: 32px;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: transform .2s, opacity .2s;
+    }
+    .main-icons img:hover {
+      opacity: 1;
+      transform: scale(1.12);
+    }
+    .section, .hero, .white-section {
+      scroll-snap-align: start;
+      width: 100%;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+    .hero {
+      background: url('aboutbackground.jpeg') center/cover no-repeat;
+      display: flex;
+      position: relative;
+      padding: 100px 5% 40px; /* Changed from 260px to 100px */
+      color: #fff;
+      align-items: flex-start; /* 텍스트를 위로 */
+    }
+    .hero-content {
+      max-width: 800px;
+      flex: 1;
+      margin-top: 0; /* 혹시 margin-top이 있으면 0으로 */
+    }
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 40px;
+    }
+    .hero-desc {
+      font-size: 1.15rem;
+      margin-bottom: 24px;
+      color: #e0ebf8;
+      line-height: 1.5;
+    }
+    .download-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px; /* 버튼과 텍스트 사이 간격 */
+    }
+    .download-buttons img {
+      height: 48px;
+      cursor: pointer;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.13));
+      transition: filter .18s;
+    }
+    .download-buttons img:hover {
+      filter: brightness(1.07);
+    }
+    .hero-about-img {
+      position: absolute;
+      top: 120px;
+      right: 40px;
+      width: 220px;
+      border-radius: 10px;
+      transition: transform .2s, opacity .2s;
+    }
+    .hero-about-img:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+    .section {
+      background: #000000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 5%;
+    }
+    .section-inner {
+      display: flex;
+      max-width: 1550px;
+      width: 100%;
+      gap: 70px;
+    }
+    .section.reverse .section-inner { flex-direction: row-reverse; }
+    .section-text { flex: 1; }
+    .section-text h2, .section-text h1 {
+      font-size: 2.1rem;
+      margin-bottom: 20px;
+    }
+    .section-text p {
+      font-size: 1.07rem;
+      line-height: 1.65;
+      color: #e6f5fe;
+    }
+    .section-img { flex: 1; }
+    .section-img img {
+      width: 100%; max-width: 100%;
+      object-fit: contain;
+      min-width: 0;
+    }
+    .white-section {
+      background: #fff;
+      color: #000000;
+      padding: 60px 5%;
+      border-top: 1px solid #eee;
+    }
+    .white-section-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .white-section h2 { font-size: 1.6rem; color: #222; }
+    .sns-row { display: flex; gap: 36px; }
+    .sns-row img { width: 52px; height: 52px; filter: grayscale(0.4);}
+    .footer-menu {
+      display: flex;
+      justify-content: center;
+      gap: 38px;
+      font-size: 1.04rem;
+      color: #1d65a6;
+      border-top: 1px solid #eee;
+      padding-top: 18px;
+    }
+    .footer-info {
+      font-size: 0.98rem;
+      color: #555;
+      line-height: 1.7;
+      white-space: pre-line;
+    }
+
+    /* --- Responsive Adjustments --- */
+    @media (max-width: 900px) {
+      .hero { padding: 60px 3% 20px; }
+      .hero h1 { font-size: 2.2rem; }
+      .section-text h1, .section-text h2 { font-size: 1.5rem; }
+      .section-inner { flex-direction: column; gap: 24px; }
+      .hero { padding-top: 180px; }
+    }
+    @media (max-width: 700px) {
+      .header { padding: 40px 60px; }
+      .logo { width: 66px; }
+      .main-icons img { width: 26px; height: 26px; }
+      .hero { padding: 40px 4% 10px; }
+      .hero-content { max-width: 100%; }
+      .download-buttons { margin-top: 16px; }
+      .hero h1 { font-size: 1.4rem; margin-bottom: 20px; }
+      .hero-desc { font-size: 0.98rem; }
+      .download-buttons img { height: 36px; }
+      .hero-about-img {
+        position: static;
+        width: 85vw;
+        margin: 0 auto 20px auto;
+        display: block;
+        top: unset; right: unset;
+      }
+      .section-inner { gap: 18px; }
+      .section-img img { min-width: 0; }
+      .sns-row { gap: 18px; }
+      .sns-row img { width: 34px; height: 34px; }
+      .footer-menu { gap: 12px; font-size: 0.85rem;}
+      .white-section { padding: 100px 2.5%; }
+      .white-section-inner { gap: 14px;}
+      .footer-info { font-size: 0.77rem; }
+    }
+    @media (max-width: 480px) {
+      .header { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .logo { width: 56px; }
+      .hero { padding: 70px 4% 10px; }
+      .download-buttons { flex-direction: column; gap: 10px; }
+      .footer-menu { flex-wrap: wrap; gap: 8px; }
+      .white-section { padding: 22px 2%; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+  <img src="logo.png" alt="Logo" class="logo" style="cursor:pointer;" onclick="location.href='home.html'" />
+  <div class="main-icons">
+    <img src="instagramwhite.png" alt="Instagram" />
+    <img src="youtubewhite.png" alt="YouTube" />
+  </div>
+</header>
+  <section class="hero">
+    <div class="hero-content" data-aos="fade-up">
+      <h1>
+        집을 고쳐주고, 꾸며주고,<br>
+        완성해주는 당신.<br>
+        수수료는 0원, 중간마진은 온전히 당신의 몫.<br>
+        <span>이제 집고와 함께 GO!</span>
+      </h1>
+      <div class="download-buttons">
+        <img src="playstore.png" alt="Google Play 다운로드" />
+        <img src="applestore.png" alt="App Store 다운로드" />
+      </div>
+    </div>
+  </section>
+  <section class="section" data-aos="fade-left">
+    <div class="section-inner">
+      <div class="section-text">
+        <h1>⚡ 초간단 회원가입</h1>
+        <p>
+         정보는 LESS, 가입은 EASY & FAST<br>
+          3초면 시작됩니다.<br>
+        </p>
+      </div>
+      <div class="section-img">
+        <img src="racing.png" alt="racing" />
+      </div>
+    </div>
+  </section>
+  <section class="section reverse" data-aos="fade-right">
+    <div class="section-inner">
+      <div class="section-text">
+        <h1>💸 ZERO 수수료!</h1>
+        <p>
+          어디는 10%, 어디는 20%<br>
+          집고는 0%<br>
+        </p>
+      </div>
+      <div class="section-img">
+        <img src="zerointerest.png" alt="zero interest" />
+      </div>
+    </div>
+  </section>
+  <section class="section" data-aos="fade-left">
+    <div class="section-inner">
+      <div class="section-text">
+        <h1>🛠️ 등록은 쉽게</h1>
+        <p>
+          쓸데없는 건 다 빼고. <br>
+          오직 당신의 사업 성장과 커뮤니티 성장을 위한 플랫폼. 집고.<br>
+        </p>
+      </div>
+      <div class="section-img">
+        <img src="homefix.png" alt="homefix 이미지" />
+      </div>
+    </div>
+  </section>
+  <section class="white-section" data-aos="fade-up">
+    <div class="white-section-inner">
+      <h2>집고 소셜미디어</h2>
+      <div class="sns-row">
+        <img src="instagramblack.png" alt="Instagram" />
+        <img src="youtubeblack.png" alt="YouTube" style="width:62px;height:62px;" />
+      </div>
+      <nav class="footer-menu">
+        <span>인재영입</span>
+        <span>서비스소개</span>
+        <span>FAQ</span>
+        <span>고객센터</span>
+      </nav>
+      <div class="footer-info">
+        (주)집고<br>
+        부산광역시 해운대구 달맞이길 41, 1동 18층 1805호<br>
+        사업자번호: 534-51-01130<br>
+        대표자명: 김성일
+      </div>
+    </div>
+  </section>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({ once: true });
+</script>
+</body>
+</html>
